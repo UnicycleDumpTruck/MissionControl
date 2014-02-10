@@ -15,185 +15,199 @@ warning = False
 cws = pygame.mixer.Sound("cws.wav")
 cws.set_volume(0.2)
 cwsC = pygame.mixer.Channel(1)
-eleven = pygame.mixer.Sound("11event.wav")
+thirteenSound = pygame.mixer.Sound("11event.wav")
 
 teiPushed = 0
 spsPushed = 0
 suitCompPushed = 0
 abortArmed = 0
 lightningStruck = 0
+sceRestored = False
 sceAux = False
 cwsPower = False
+thirteen = False
 
 locations=['/dev/ttyUSB0','/dev/ttyUSB1','/dev/ttyUSB2','/dev/ttyUSB3','/dev/ttyS0','/dev/ttyS1','/dev/ttyS2','/dev/ttyS3']
 
 def lightningStrike():
 	global lightningStruck
 	global sceAux
-	lightningStruck = 1
-	if not sceAux:
-		serialFromArduino.write(b'1,4,4,1,1\n')
-		sleep(0.1)
-		serialFromArduino.write(b'1,4,4,1,7\n')
-		cwsC.play(cws)
-		sleep(2)
-	if not sceAux:		
-		serialFromArduino.write(b'1,4,4,2,5\n')
-		sleep(0.1)
-		serialFromArduino.write(b'1,4,4,1,7\n')
-		cwsC.play(cws)
-		sleep(2)
-	if not sceAux:
-		serialFromArduino.write(b'1,4,4,5,0\n')
-		sleep(0.1)
-		serialFromArduino.write(b'1,4,4,1,7\n')
-		cwsC.play(cws)
-		sleep(1)
-	if not sceAux:
-		serialFromArduino.write(b'1,4,4,3,5\n')
-		sleep(0.1)
-		serialFromArduino.write(b'1,4,4,1,7\n')
-		cwsC.play(cws)
-		sleep(1)
-	if not sceAux:
-		serialFromArduino.write(b'1,4,4,0,3\n')
-		sleep(0.1)
-		serialFromArduino.write(b'1,4,4,1,7\n')
-		cwsC.play(cws)
-		sleep(2)
-	if not sceAux:
-		serialFromArduino.write(b'1,4,4,3,1\n')
-		sleep(0.1)
-		serialFromArduino.write(b'1,4,4,1,7\n')
-		cwsC.play(cws)
-		sleep(1)
-	if not sceAux:
-		serialFromArduino.write(b'1,4,4,5,3\n')
-		sleep(0.1)
-		serialFromArduino.write(b'1,4,4,1,7\n')
-		cwsC.play(cws)
-		sleep(1)
-	if not sceAux:
-		serialFromArduino.write(b'1,4,4,1,4\n')
-		sleep(0.1)
-		serialFromArduino.write(b'1,4,4,1,7\n')
-		cwsC.play(cws)
-		sleep(1)
-	if not sceAux:
-		serialFromArduino.write(b'1,4,4,3,3\n')
-		sleep(0.1)
-		serialFromArduino.write(b'1,4,4,1,7\n')
-		cwsC.play(cws)
-		sleep(1)
-	if not sceAux:
-		serialFromArduino.write(b'1,4,4,0,5\n')
-		sleep(0.1)
-		serialFromArduino.write(b'1,4,4,1,7\n')
-		cwsC.play(cws)
-		sleep(1)
-	if not sceAux:
-		serialFromArduino.write(b'1,4,4,3,0\n')
-		sleep(0.1)
-		serialFromArduino.write(b'1,4,4,1,7\n')
-		cwsC.play(cws)
-		sleep(1)
-	if not sceAux:
-		serialFromArduino.write(b'1,4,4,1,3\n')
-		sleep(0.1)
-		serialFromArduino.write(b'1,4,4,1,7\n')
-		cwsC.play(cws)
-		sleep(1)
-	if not sceAux:
-		serialFromArduino.write(b'1,4,4,5,2\n')
-		sleep(0.1)
-		serialFromArduino.write(b'1,4,4,1,7\n')
-		cwsC.play(cws)
+	#lightningStruck = 1
+	while True:
+		if (lightningStruck == 1):
+			if not sceAux:
+				serialFromArduino.write(b'1,4,4,1,1\n')
+				sleep(0.1)
+				serialFromArduino.write(b'1,4,4,1,7\n')
+				cwsC.play(cws)
+				sleep(2)
+			if not sceAux:		
+				serialFromArduino.write(b'1,4,4,2,5\n')
+				sleep(0.1)
+				serialFromArduino.write(b'1,4,4,1,7\n')
+				cwsC.play(cws)
+				sleep(2)
+			if not sceAux:
+				serialFromArduino.write(b'1,4,4,5,0\n')
+				sleep(0.1)
+				serialFromArduino.write(b'1,4,4,1,7\n')
+				cwsC.play(cws)
+				sleep(1)
+			if not sceAux:
+				serialFromArduino.write(b'1,4,4,3,5\n')
+				sleep(0.1)
+				serialFromArduino.write(b'1,4,4,1,7\n')
+				cwsC.play(cws)
+				sleep(1)
+			if not sceAux:
+				serialFromArduino.write(b'1,4,4,0,3\n')
+				sleep(0.1)
+				serialFromArduino.write(b'1,4,4,1,7\n')
+				cwsC.play(cws)
+				sleep(2)
+			if not sceAux:
+				serialFromArduino.write(b'1,4,4,3,1\n')
+				sleep(0.1)
+				serialFromArduino.write(b'1,4,4,1,7\n')
+				cwsC.play(cws)
+				sleep(1)
+			if not sceAux:
+				serialFromArduino.write(b'1,4,4,5,3\n')
+				sleep(0.1)
+				serialFromArduino.write(b'1,4,4,1,7\n')
+				cwsC.play(cws)
+				sleep(1)
+			if not sceAux:
+				serialFromArduino.write(b'1,4,4,1,4\n')
+				sleep(0.1)
+				serialFromArduino.write(b'1,4,4,1,7\n')
+				cwsC.play(cws)
+				sleep(1)
+			if not sceAux:
+				serialFromArduino.write(b'1,4,4,3,3\n')
+				sleep(0.1)
+				serialFromArduino.write(b'1,4,4,1,7\n')
+				cwsC.play(cws)
+				sleep(1)
+			if not sceAux:
+				serialFromArduino.write(b'1,4,4,0,5\n')
+				sleep(0.1)
+				serialFromArduino.write(b'1,4,4,1,7\n')
+				cwsC.play(cws)
+				sleep(1)
+			if not sceAux:
+				serialFromArduino.write(b'1,4,4,3,0\n')
+				sleep(0.1)
+				serialFromArduino.write(b'1,4,4,1,7\n')
+				cwsC.play(cws)
+				sleep(1)
+			if not sceAux:
+				serialFromArduino.write(b'1,4,4,1,3\n')
+				sleep(0.1)
+				serialFromArduino.write(b'1,4,4,1,7\n')
+				cwsC.play(cws)
+				sleep(1)
+			if not sceAux:
+				serialFromArduino.write(b'1,4,4,5,2\n')
+				sleep(0.1)
+				serialFromArduino.write(b'1,4,4,1,7\n')
+				cwsC.play(cws)
+			lightningStruck = 0
+			sleep(1)
 
 def sceRestore():
-	cwsC.stop()
-	serialFromArduino.write(b'0,4,4,1,1\n')
-	sleep(0.1)
-	serialFromArduino.write(b'0,4,4,2,5\n')
-	sleep(0.1)
-	serialFromArduino.write(b'0,4,4,5,0\n')
-	sleep(0.1)
-	serialFromArduino.write(b'0,4,4,3,5\n')
-	sleep(0.1)
-	serialFromArduino.write(b'0,4,4,0,3\n')
-	sleep(0.1)
-	serialFromArduino.write(b'0,4,4,3,1\n')
-	sleep(0.1)
-	serialFromArduino.write(b'0,4,4,5,3\n')
-	sleep(0.1)
-	serialFromArduino.write(b'0,4,4,1,4\n')
-	sleep(0.1)
-	serialFromArduino.write(b'0,4,4,3,3\n')
-	sleep(0.1)
-	serialFromArduino.write(b'0,4,4,0,5\n')
-	sleep(0.1)
-	serialFromArduino.write(b'0,4,4,3,0\n')
-	sleep(0.1)
-	serialFromArduino.write(b'0,4,4,1,3\n')
-	sleep(0.1)
-	serialFromArduino.write(b'0,4,4,5,2\n')
+	global sceRestored
+	while True:
+		if sceRestored:
+			cwsC.stop()
+			serialFromArduino.write(b'0,4,4,1,1\n')
+			sleep(0.1)
+			serialFromArduino.write(b'0,4,4,2,5\n')
+			sleep(0.1)
+			serialFromArduino.write(b'0,4,4,5,0\n')
+			sleep(0.1)
+			serialFromArduino.write(b'0,4,4,3,5\n')
+			sleep(0.1)
+			serialFromArduino.write(b'0,4,4,0,3\n')
+			sleep(0.1)
+			serialFromArduino.write(b'0,4,4,3,1\n')
+			sleep(0.1)
+			serialFromArduino.write(b'0,4,4,5,3\n')
+			sleep(0.1)
+			serialFromArduino.write(b'0,4,4,1,4\n')
+			sleep(0.1)
+			serialFromArduino.write(b'0,4,4,3,3\n')
+			sleep(0.1)
+			serialFromArduino.write(b'0,4,4,0,5\n')
+			sleep(0.1)
+			serialFromArduino.write(b'0,4,4,3,0\n')
+			sleep(0.1)
+			serialFromArduino.write(b'0,4,4,1,3\n')
+			sleep(0.1)
+			serialFromArduino.write(b'0,4,4,5,2\n')
+			sceRestored = False
+		sleep(0.5)
 
-def elevenEvent():
-	global eleven
+def thirteenEvent():
+	global thirteen
+	global thirteenSound
 	global cwsC
 	global cws
-	serialFromArduino.write(b'1,4,4,4,7\n')
-	offbit = 0
-	eleven.play()
-	sleep(4.5)
-	serialFromArduino.write(b'1,4,4,1,2\n')
-	sleep(0.1)
-	serialFromArduino.write(b'1,4,4,1,7\n')
-	cwsC.play(cws)
-	sleep(0.1)
-#	serialFromArduino.write(b'2,11,0,0,0\n')
-#	sleep(1)
-#	serialFromArduino.write(b'2,10,0,0,0\n')
-#	sleep(1)
-	serialFromArduino.write(b'2,9,0,0,0\n')
-	sleep(0.5)
-	serialFromArduino.write(b'2,9,6,0,0\n')
-	sleep(0.5)
-	serialFromArduino.write(b'2,8,0,0,0\n')
-	sleep(0.5)
-	serialFromArduino.write(b'2,8,6,0,0\n')
-	sleep(0.5)
-
-	serialFromArduino.write(b'1,4,4,1,5\n')	
-	sleep(0.1)
-	serialFromArduino.write(b'1,4,4,1,7\n')
-	cwsC.play(cws)
-	sleep(0.5)
+	while True:
+		if thirteen:
+			serialFromArduino.write(b'1,4,4,4,7\n') # Light next to switch
+			offbit = 0
+			thirteenSound.play()
+			sleep(4.5)
+			serialFromArduino.write(b'1,4,4,1,5\n') # Ox flow high
+			sleep(0.1)
+			serialFromArduino.write(b'1,4,4,1,7\n') # Illuminated Master Alarm Pushbutton
+			cwsC.play(cws)
+			sleep(0.1)
+		#	serialFromArduino.write(b'2,11,0,0,0\n')
+		#	sleep(1)
+		#	serialFromArduino.write(b'2,10,0,0,0\n')
+		#	sleep(1)
+			serialFromArduino.write(b'2,9,0,0,0\n')
+			sleep(0.5)
+			serialFromArduino.write(b'2,9,6,0,0\n')
+			sleep(0.5)
+			serialFromArduino.write(b'2,8,0,0,0\n')
+			sleep(0.5)
+			serialFromArduino.write(b'2,8,6,0,0\n')
+			sleep(0.5)
+			serialFromArduino.write(b'1,4,4,2,3\n')	# Main Bus B Undervolt
+			sleep(0.1)
+			serialFromArduino.write(b'1,4,4,1,7\n') # Illuminated Master Alarm Pushbutton
+			cwsC.play(cws)
+			sleep(0.5)
 	
-	serialFromArduino.write(b'2,7,0,0,0\n')
-	sleep(0.5)
-	serialFromArduino.write(b'2,7,6,0,0\n')
-	sleep(0.5)
-	serialFromArduino.write(b'2,6,0,0,0\n')
-	sleep(0.5)
-	serialFromArduino.write(b'2,6,6,0,0\n')
-	sleep(0.5)
-	serialFromArduino.write(b'2,5,0,0,0\n')
-	sleep(0.5)
-	serialFromArduino.write(b'2,5,6,0,0\n')
-	sleep(0.5)
-	serialFromArduino.write(b'2,4,0,0,0\n')
-	sleep(0.5)
-	serialFromArduino.write(b'2,4,6,0,0\n')
-	sleep(0.5)
-	serialFromArduino.write(b'2,3,0,0,0\n')
-	sleep(0.5)
-	serialFromArduino.write(b'2,3,6,0,0\n')
-	sleep(0.5)
-	serialFromArduino.write(b'2,2,0,0,0\n')
-	sleep(0.5)
-	serialFromArduino.write(b'2,2,6,0,0\n')
-	sleep(0.5)
-#	warning = True
+			serialFromArduino.write(b'2,7,0,0,0\n')
+			sleep(0.5)
+			serialFromArduino.write(b'2,7,6,0,0\n')
+			sleep(0.5)
+			serialFromArduino.write(b'2,6,0,0,0\n')
+			sleep(0.5)
+			serialFromArduino.write(b'2,6,6,0,0\n')
+			sleep(0.5)
+			serialFromArduino.write(b'2,5,0,0,0\n')
+			sleep(0.5)
+			serialFromArduino.write(b'2,5,6,0,0\n')
+			sleep(0.5)
+			serialFromArduino.write(b'2,4,0,0,0\n')
+			sleep(0.5)
+			serialFromArduino.write(b'2,4,6,0,0\n')
+			sleep(0.5)
+			serialFromArduino.write(b'2,3,0,0,0\n')
+			sleep(0.5)
+			serialFromArduino.write(b'2,3,6,0,0\n')
+			sleep(0.5)
+			serialFromArduino.write(b'2,2,0,0,0\n')
+			sleep(0.5)
+			serialFromArduino.write(b'2,2,6,0,0\n')
+			sleep(0.5)
+			thirteen = False
+		sleep(0.1)
 
 
 
@@ -205,11 +219,21 @@ def mainLoop():
 	global abortArmed
 	global lightningStruck
 	global sceAux
+	global sceRestored
 	global airComp
 	global cws
 	global cwsPower
+	global thirteen
 	
-
+	tliPushed = 0
+	sicPushed = 0
+	siiPushed = 0
+	sivbPushed = 0
+	miPushed = 0
+	miiPushed = 0
+	miiiPushed = 0
+	glycolPushed = 0
+	
 	aborted = pygame.mixer.Sound("aborted.wav")
 
 	liftoff = pygame.mixer.Sound("liftoff.wav")
@@ -225,8 +249,6 @@ def mainLoop():
 
 	sequenceC = pygame.mixer.Channel(2)
 	
-
-
 	shortexp = pygame.mixer.Sound("shortexp.wav")
 	medexp = pygame.mixer.Sound("medexp.wav")
 	les = pygame.mixer.Sound("les.wav")
@@ -264,9 +286,6 @@ def mainLoop():
 	#explosion = pygame.mixer.Sound("explosion")
 	#engine = pygame.mixer.Sound("engine.wav")
 	
-
-
-
 
 #	 for device in locations:	 
 #		 try:	 
@@ -312,8 +331,6 @@ def mainLoop():
 				digit = digit - 128
 				#print digit, "off"
 				offBit = 1
-#			 freeChannel = pygame.mixer.find_channel(True)
-#			 freeChannel = pygame.mixer.Channel(5)
 			if (digit == 6):
 				if (offBit):
 					offBit = 0
@@ -346,7 +363,7 @@ def mainLoop():
 					sleep(0.1)
 					cwsC.play(cws)
 					serialFromArduino.write(b'1,4,4,1,7\n')
-			elif (digit == 16):
+			elif (digit == 16): #                      Initiate Apollo 12 Lightning Strike
 				if (offBit):
 					offBit = 0
 				else:
@@ -354,10 +371,7 @@ def mainLoop():
 						if not lightningStruck:
 							#global sceAux
 							if not sceAux:
-								if not thread2.isAlive():
-									thread2.start()
-
-
+								lightningStruck = 1
 			elif (digit == 0):
 				if (offBit):
 					offBit = 0
@@ -447,12 +461,20 @@ def mainLoop():
 				if (offBit):
 					offBit = 0
 					shortexp.play()
-			elif (digit == 12):	 # Apollo 11 explosion
+			elif (digit == 12):	 #                           Apollo 13 explosion
 				if (offBit):
-					thread11.start()
+					thirteen = True
 				else:
 					serialFromArduino.write(b'0,4,4,4,7\n')
-					#eleven.fadeout(1000)					
+					sleep(0.1)
+					serialFromArduino.write(b'2,9,0,0,0\n')
+					sleep(0.1)
+					serialFromArduino.write(b'2,9,6,0,0\n')
+					sleep(0.1)
+					serialFromArduino.write(b'0,4,4,1,5\n') # Ox flow high
+					sleep(0.1)
+					serialFromArduino.write(b'0,4,4,2,3\n')	# Main Bus B Undervolt
+
 			elif (digit == 13):
 				if (offBit):
 					serialFromArduino.write(b'1,4,4,5,7\n')
@@ -477,8 +499,6 @@ def mainLoop():
 				else:
 					serialFromArduino.write(b'0,4,4,7,7\n')
 					heat.fadeout(500)
-
-
 			elif (digit == 24):
 				if (offBit): 
 					offBit = 0
@@ -489,6 +509,7 @@ def mainLoop():
 					sleep(0.1)
 					teiPushed = teiPushed + 1
 					if teiPushed == 6:
+						sleep(0.1)
 						serialFromArduino.write(b'1,4,4,4,1\n')
 						sleep(0.1)
 						serialFromArduino.write(b'1,4,4,1,7\n')
@@ -503,16 +524,19 @@ def mainLoop():
 					sleep(0.1)
 					spsPushed = spsPushed + 1
 					if (spsPushed % 10) == 0:
+						sleep(0.1)
 						serialFromArduino.write(b'1,4,4,0,4\n')
 						sleep(0.1)
 						serialFromArduino.write(b'1,4,4,1,7\n')
 						cwsC.play(cws)
 					if spsPushed == 5:
+						sleep(0.1)
 						serialFromArduino.write(b'1,4,4,0,2\n')
 						sleep(0.1)
 						serialFromArduino.write(b'1,4,4,1,7\n')
 						cwsC.play(cws)
 					if spsPushed == 25:
+						sleep(0.1)
 						serialFromArduino.write(b'1,4,4,0,3\n')
 						sleep(0.1)
 						serialFromArduino.write(b'1,4,4,1,7\n')
@@ -524,6 +548,15 @@ def mainLoop():
 				else:
 					miii.play()	 
 					serialFromArduino.write(b'1,4,4,2,0\n')
+					sleep(0.1)
+					miiiPushed = miiiPushed + 1
+					if miiiPushed == 6:
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,0,4\n')
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,1,7\n')
+						cwsC.play(cws)
+
 			elif (digit == 27):
 				if (offBit): 
 					offBit = 0
@@ -531,6 +564,13 @@ def mainLoop():
 				else:
 					sivb.play()	 
 					serialFromArduino.write(b'1,4,4,2,0\n')
+					sivbPushed = sivbPushed + 1
+					if sivbPushed == 6:
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,0,5\n')
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,1,7\n')
+						cwsC.play(cws)
 			elif (digit == 28):
 				if (offBit): 
 					offBit = 0
@@ -538,6 +578,13 @@ def mainLoop():
 				else:
 					sii.play()	
 					serialFromArduino.write(b'1,4,4,2,0\n')
+					siiPushed = siiPushed + 1
+					if siiPushed == 6:
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,4,0\n')
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,1,7\n')
+						cwsC.play(cws)
 			elif (digit == 29):
 				if (offBit): 
 					offBit = 0
@@ -545,6 +592,13 @@ def mainLoop():
 				else:
 					sic.play()	
 					serialFromArduino.write(b'1,4,4,2,0\n')
+					sicPushed = sicPushed + 1
+					if sicPushed == 6:
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,3,1\n')
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,1,7\n')
+						cwsC.play(cws)
 			elif (digit == 30):
 				if (offBit): 
 					offBit = 0
@@ -552,6 +606,13 @@ def mainLoop():
 				else:
 					mi.play()  
 					serialFromArduino.write(b'1,4,4,2,0\n')
+					miPushed = miPushed + 1
+					if miPushed == 6:
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,3,2\n')
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,1,7\n')
+						cwsC.play(cws)
 			elif (digit == 31):
 				if (offBit): 
 					offBit = 0
@@ -559,6 +620,13 @@ def mainLoop():
 				else:
 					mii.play()	
 					serialFromArduino.write(b'1,4,4,2,0\n')
+					miiPushed = miiPushed + 1
+					if miiPushed == 6:
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,4,2\n')
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,1,7\n')
+						cwsC.play(cws)
 			elif (digit == 47):
 				if (offBit):
 					offBit = 0 
@@ -566,6 +634,13 @@ def mainLoop():
 				else:
 					tli.play()
 					serialFromArduino.write(b'1,4,4,2,0\n')
+					tliPushed = tliPushed + 1
+					if tliPushed == 6:
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,5,0\n')
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,1,7\n')
+						cwsC.play(cws)
 			elif (digit == 22):
 				if (offBit):
 					serialFromArduino.write(b'1,4,4,7,5\n')
@@ -601,6 +676,7 @@ def mainLoop():
 					suitCompPushed = suitCompPushed + 1
 					sleep(0.1)
 					if (suitCompPushed % 5) == 0:
+						sleep(0.1)
 						serialFromArduino.write(b'1,4,4,2,5\n')
 						sleep(0.1)
 						serialFromArduino.write(b'1,4,4,1,7\n')
@@ -617,8 +693,7 @@ def mainLoop():
 					serialFromArduino.write(b'1,4,4,6,6\n')
 					sceAux = True
 					if lightningStruck:
-						thread3 = threading.Thread(target = sceRestore)
-						thread3.start()
+						sceRestored = True
 				else:
 					serialFromArduino.write(b'0,4,4,6,6\n')
 					sceAux = False
@@ -627,6 +702,13 @@ def mainLoop():
 					serialFromArduino.write(b'1,4,4,5,6\n')
 					offbit = 0
 					dieselpump.play()
+					glycolPushed = glycolPushed + 1
+					if glycolPushed == 6:
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,3,3\n')
+						sleep(0.1)
+						serialFromArduino.write(b'1,4,4,1,7\n')
+						cwsC.play(cws)
 				else:
 					serialFromArduino.write(b'0,4,4,5,6\n')
 					dieselpump.fadeout(1000)
@@ -672,9 +754,13 @@ def mainLoop():
 
 thread1 = threading.Thread(target = mainLoop)
 thread2 = threading.Thread(target = lightningStrike)
-thread11 = threading.Thread(target = elevenEvent)
+thread3 = threading.Thread(target = sceRestore)
+thread13 = threading.Thread(target = thirteenEvent)
 
 # Start new Threads
 thread1.start()
+thread2.start()
+thread3.start()
+thread13.start()
 print "Exiting Main Thread"
 
