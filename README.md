@@ -8,4 +8,3 @@ This code is provided as an example only. It is not intended to be installed and
 You can find your own sounds to use at www.freesound.org and the Apollo 11 flight journal: http://history.nasa.gov/ap11fj/
 
 Have fun building your own adventure!
-Jeff :)
