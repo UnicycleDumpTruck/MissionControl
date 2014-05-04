@@ -8,7 +8,7 @@ This code is provided as an example only. It is not intended to be installed and
 You can find your own sounds to use at www.freesound.org and the Apollo 11 flight journal: http://history.nasa.gov/ap11fj/
 
 Some of the parts:
-<li><a href="http://www.adafruit.com/products/1427" data-toggle="tooltip" title="">LED Matrix Drivers</a>
+<li><a href="http://www.adafruit.com/products/1427" data-toggle="tooltip" title="">LED Matrix Drivers</a></li>
 <li><a href="http://www.adafruit.com/products/732" data-toggle="tooltip" title="">MCP23017 I/O Expanders</a> 
 <li><a href="http://www.adafruit.com/products/501" data-toggle="tooltip" title="">Arduino</a>
 <li><a href="http://www.adafruit.com/products/998" data-toggle="tooltip" title="">Raspberry Pi</a>
